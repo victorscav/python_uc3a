@@ -1,0 +1,26 @@
+{% extends 'estoque/_base.html' %}
+
+{% block title %} Estoque - Loja de Eletronicos {% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+
+    <divclass='row'>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>
+            <table>
+                <tr>
+                    <td>Produto</td> <td> {{ produto.nome}} </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class='col-md-4'></div>
+    </div>
+
+                
+{% endblock %}
