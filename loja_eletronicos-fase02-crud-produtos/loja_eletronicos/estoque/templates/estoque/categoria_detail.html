@@ -1,0 +1,13 @@
+<!-- templates/estoque/categoria_detail.html -->
+{% extends "estoque/base.html" %}
+{% block title %}Detalhes da Categoria{% endblock %}
+
+{% block content %}
+<h1>Categoria: {{ categoria.identificacao }}</h1>
+
+<p><strong>Descrição:</strong> {{ categoria.descricao }}</p>
+
+<a href="{% url 'estoque:categoria_update' categoria.pk %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'estoque:categoria_delete' categoria.pk %}" class="btn btn-danger">Excluir</a>
+<a href="{% url 'estoque:categoria_list' %}" class="btn btn-secondary">Voltar à Lista</a>
+{% endblock %}

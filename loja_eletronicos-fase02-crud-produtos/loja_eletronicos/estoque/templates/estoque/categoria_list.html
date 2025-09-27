@@ -1,0 +1,102 @@
+{% extends "estoque/base.html" %}
+{% block title %}Lista de Categorias{% endblock %}
+
+{% block content %}
+<style>
+    .table-custom {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-custom thead th {
+        background-color: #212529;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table-custom tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .table-custom td,
+    .table-custom th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* Para a coluna Identificação e Descrição alinharem texto à esquerda */
+    .table-custom td:nth-child(1),
+    .table-custom td:nth-child(2) {
+        text-align: left;
+    }
+
+    .acoes-btn-group {
+        white-space: nowrap;
+    }
+
+    .btn-action a {
+        margin-right: 5px;
+    }
+</style>
+
+<h1>Categorias de produtos</h1>
+
+<a href="{% url 'estoque:categoria_create' %}" class="btn btn-primary mb-3">+ Nova Categoria</a>
+
+<table class="table table-bordered table-striped table-sm table-custom">
+    <thead>
+        <tr>
+            <th>Identificação</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.identificacao }}</td>
+                <td>{{ categoria.descricao }}</td>
+                <td class="acoes-btn-group">
+                    <a href="{% url 'estoque:categoria_detail' categoria.pk %}" class="btn btn-primary btn-sm btn-action" title="Detalhes">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'estoque:categoria_update' categoria.pk %}" class="btn btn-warning btn-sm btn-action" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'estoque:categoria_delete' categoria.pk %}" class="btn btn-danger btn-sm btn-action" title="Deletar">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="3">Nenhuma categoria cadastrada.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Paginação -->
+{% if is_paginated %}
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                </li>
+            {% endif %}
+
+            <li class="page-item active">
+                <span class="page-link">{{ page_obj.number }}</span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+{% endblock %}

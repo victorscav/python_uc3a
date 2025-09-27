@@ -1,0 +1,35 @@
+<!-- templates/estoque/categoria_form.html -->
+{% extends "estoque/base.html" %}
+{% block title %}{{ view_title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h4>{{ view_title }}</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Estilização dos campos do formulário -->
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="{% url 'estoque:categoria_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
