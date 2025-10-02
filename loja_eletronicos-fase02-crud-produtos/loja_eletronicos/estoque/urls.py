@@ -26,5 +26,9 @@ urlpatterns = [
     path('categorias/novo/', views.CategoriaCreateView.as_view(), name='categoria_create'),
     path('categorias/<int:pk>/editar/', views.CategoriaUpdateView.as_view(), name='categoria_update'),
     path('categorias/<int:pk>/excluir/', views.CategoriaDeleteView.as_view(), name='categoria_delete'),
-
+    path('tags/', views.ProtutoTagListView.as_view(), name='protuto_tag_list'),
+    path('tags/novo/', views.ProtutoTagCreateView.as_view(), name='protuto_tag_create'),
+    path('tags/<int:pk>/editar/', views.ProtutoTagUpdateView.as_view(), name='protuto_tag_update'),
+    path('tags/<int:pk>/deletar/', views.ProtutoTagDeleteView.as_view(), name='protuto_tag_delete'),
+    path('tags/<int:pk>/', views.ProtutoTagDetailView.as_view(), name='protuto_tag_detail'),
 ]

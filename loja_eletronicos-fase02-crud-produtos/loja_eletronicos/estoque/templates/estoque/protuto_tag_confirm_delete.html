@@ -1,0 +1,15 @@
+{% extends "estoque/base.html" %}
+
+{% block title %}Excluir Tag{% endblock %}
+
+{% block content %}
+<h2>Excluir Tag</h2>
+
+<p>Tem certeza que deseja excluir a tag "<strong>{{ object.identificacao }}</strong>"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sim, excluir</button>
+    <a href="{% url 'estoque:protuto_tag_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

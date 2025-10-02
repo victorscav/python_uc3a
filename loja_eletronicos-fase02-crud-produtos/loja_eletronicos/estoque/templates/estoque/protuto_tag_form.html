@@ -1,0 +1,119 @@
+{% extends "estoque/base.html" %}
+
+{% block title %}
+    {% if object %}Editar Tag{% else %}Nova Tag{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #f5f6fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 3rem auto;
+        background: #ffffff;
+        padding: 2.5rem 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #4f46e5;
+        margin-bottom: 2rem;
+        letter-spacing: 0.5px;
+    }
+
+    form p {
+        margin-bottom: 1.5rem;
+    }
+
+    form label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #333;
+        margin-bottom: 0.3rem;
+    }
+
+    form input[type="text"],
+    form textarea,
+    form select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 1.5px solid #d1d5db;
+        border-radius: 10px;
+        background-color: #f9fafb;
+        transition: border-color 0.3s ease;
+    }
+
+    form input:focus,
+    form textarea:focus,
+    form select:focus {
+        outline: none;
+        border-color: #4f46e5;
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.65rem 1.4rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success {
+        background-color: #10b981;
+        color: white;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #059669;
+    }
+
+    .btn-secondary {
+        background-color: #e5e7eb;
+        color: #374151;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #d1d5db;
+        color: #111827;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>{% if object %}Editar Tag{% else %}Nova Tag{% endif %}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="{% url 'estoque:protuto_tag_list' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
