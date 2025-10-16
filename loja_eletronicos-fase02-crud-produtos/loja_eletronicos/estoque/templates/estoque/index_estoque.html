@@ -3,20 +3,61 @@
 {% block title %}Página Inicial - Minha Loja{% endblock %}
 
 {% block extra_css %}
-    {{ block.super }} 
+{{ block.super }}
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
 
+    .welcome-wrapper {
+        min-height: calc(100vh - 120px); /* Considera header + footer */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .welcome-container {
+        background-color: #1f1f1f;
+        color: #e0e0e0;
+        padding: 3rem 2rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        max-width: 700px;
+        width: 100%;
+    }
+
+    .welcome-container h1 {
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .welcome-container p.lead {
+        color: #bbbbbb;
+    }
+
+    .welcome-container hr {
+        border-color: #444;
+    }
+
+    .btn-lg {
+        margin-top: 1rem;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron text-center bg-light p-5 rounded">
+<div class="welcome-wrapper">
+    <div class="welcome-container">
         <h1 class="display-4">Bem-vindo à gestão de estoque</h1>
-        <p class="lead">Os melhores produtos, são gerenciados aqui.</p>
+        <p class="lead">Os melhores produtos são gerenciados aqui.</p>
         <hr class="my-4">
-        <p>Gerencie os produtos oferecidos aos seus clientes</p>
-        <a class="btn btn-primary btn-lg" 
-            href="#" 
-            role="button">
-            Ver Produtos
+        <p>Gerencie os produtos oferecidos aos seus clientes com facilidade e segurança.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'estoque:produto_list' %}" role="button">
+            <i class="bi bi-box-seam"></i> Ver Produtos
         </a>
     </div>
+</div>
 {% endblock %}

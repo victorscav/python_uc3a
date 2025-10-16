@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     # APP PARA FORMS
     'widget_tweaks',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
 
     # Nossas APPS
     'blog',

@@ -1,35 +1,81 @@
 {% extends 'estoque/base.html' %}
 
-{% block title %}Estoque - Loja de Eletronicos{% endblock %}
+{% block title %}Estoque - Loja de Eletrônicos{% endblock %}
 
 {% block extra_css %}
-    {{ block.super }} 
+{{ block.super }}
+<style>
+    .card {
+        background-color: #1e1e1e;
+        border: 1px solid #2c2c2c;
+        color: #e0e0e0;
+        transition: transform 0.2s ease;
+    }
 
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-title {
+        color: #ffffff;
+    }
+
+    .card-body p.card-text,
+    .card-body p.card-text * {
+        color: #ffffff !important;
+    }
+
+    .card-subtitle {
+        color: #90caf9;
+    }
+
+    .btn-sm {
+        margin-right: 0.25rem;
+    }
+
+    .text-center {
+        color: #cccccc;
+    }
+
+    .card-img-top {
+        height: 150px; /* imagem menor */
+        object-fit: contain;
+        background-color: #1a1a1a;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Nossos Produtos</h1>
-    <a href="{% url 'estoque:produto_create' %}" class="btn btn-success">Adicionar Novo Produto</a>
+    <h1 class="text-white">Nossos Produtos</h1>
+    <a href="{% url 'estoque:produto_create' %}" class="btn btn-success">
+        <i class="bi bi-plus-circle-fill"></i> Adicionar Novo Produto
+    </a>
 </div>
 
 <div class="row">
     {% for produto in produtos %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
+    <div class="col-md-3 mb-4">  <!-- aqui mudou de col-md-4 para col-md-3 -->
+        <div class="card h-100 shadow-sm">
             {% if produto.imagem %}
-            <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}" style="height: 200px; object-fit: cover;">
+                <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}">
             {% else %}
-            <img src="https://placehold.co/300x200.png?text=Sem+Imagem" class="card-img-top" alt="Sem Imagem">
+                <img src="https://placehold.co/300x200/1a1a1a/cccccc?text=Sem+Imagem" class="card-img-top" alt="Sem Imagem">
             {% endif %}
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ produto.nome }}</h5>
-                <p class="card-text text-muted">{{ produto.categoria.identificacao|default:"Sem Categoria" }}</p>
+                <p class="card-text">{{ produto.categoria.identificacao|default:"Sem Categoria" }}</p>
                 <h6 class="card-subtitle mb-2">R$ {{ produto.preco }}</h6>
                 <div class="mt-auto">
-                    <a href="{% url 'estoque:produto_detail' produto.pk %}" class="btn btn-primary btn-sm">Detalhes</a>
-                    <a href="{% url 'estoque:produto_update' produto.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{% url 'estoque:produto_delete' produto.pk %}" class="btn btn-danger btn-sm">Deletar</a>
+                    <a href="{% url 'estoque:produto_detail' produto.pk %}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-info-circle"></i> Detalhes
+                    </a>
+                    <a href="{% url 'estoque:produto_update' produto.pk %}" class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil-fill"></i> Editar
+                    </a>
+                    <a href="{% url 'estoque:produto_delete' produto.pk %}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash-fill"></i> Deletar
+                    </a>
                 </div>
             </div>
         </div>

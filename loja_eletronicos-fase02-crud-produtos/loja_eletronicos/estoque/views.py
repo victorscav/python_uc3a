@@ -57,7 +57,7 @@ class ProdutoUpdateView(UpdateView):
         return context
 
 class ProdutoDeleteView(DeleteView):
-    model = Categoria
+    model = Produto
     template_name = 'estoque/produto_confirm_delete.html'
     success_url = reverse_lazy('estoque:produto_list')
     context_object_name = 'produto'
