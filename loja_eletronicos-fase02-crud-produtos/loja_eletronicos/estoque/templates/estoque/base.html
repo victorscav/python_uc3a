@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,8 +41,8 @@
 <body>
 
     <header>
-        <img src="https://placehold.co/1920x300?text=Loja%20de%20Eletronicos&font=roboto" alt="Imagem de topo do sistema" class="full-width-header-image">
-    </header>
+        <img src="{% static 'imagens/header_senac_games.jpeg' %}" 
+     alt="SENAC GAMES" class="full-width-header-image">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
@@ -87,7 +88,7 @@
 
     <footer class="bg-dark text-white text-center p-3 mt-auto">
         <div class="container">
-            <p class="mb-0">&copy; 2025 Seu Sistema. Todos os direitos reservados.</p>
+            <p class="mb-0">&copy; 2025 SENAC GAMES. Todos os direitos reservados.</p>
         </div>
     </footer>
 
